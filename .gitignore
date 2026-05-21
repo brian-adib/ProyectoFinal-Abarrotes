@@ -1,0 +1,20 @@
+# .NET
+bin/
+obj/
+*.db
+*.sqlite
+
+# Node / React
+node_modules/
+.env
+dist/
+dist-ssr/
+
+# Visual Studio
+.vs/
+*.suo
+*.user
+
+# Otros
+*.log
+*.tmp
