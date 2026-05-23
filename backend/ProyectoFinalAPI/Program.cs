@@ -62,6 +62,12 @@ builder.Services.AddSwaggerGen(c =>
 
 var app = builder.Build();
 
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+    var env = scope.ServiceProvider.GetRequiredService<IWebHostEnvironment>();
+    await DataSeeder.SeedAsync(dbContext, env);
+}
 // Configurar pipeline de HTTP
 if (app.Environment.IsDevelopment())
 {
