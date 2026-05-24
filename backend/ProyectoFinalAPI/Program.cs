@@ -7,7 +7,7 @@ using System.Text;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
-//builder.Configuration.AddUserSecrets<Program>();
+builder.Configuration.AddUserSecrets<Program>();
 // Agregar servicios para controladores
 builder.Services.AddControllers()
     .AddJsonOptions(options =>
@@ -78,11 +78,9 @@ using (var scope = app.Services.CreateScope())
     await DataSeeder.SeedAsync(dbContext, env);
 }
 // Configurar pipeline de HTTP
-if (app.Environment.IsDevelopment())
-{
     app.UseSwagger();
     app.UseSwaggerUI();
-}
+
 
 app.UseHttpsRedirection();
 

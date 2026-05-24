@@ -2,13 +2,15 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ProyectoFinalAPI.Data;
+using ProyectoFinalAPI.Dtos;
 using ProyectoFinalAPI.Models;
+using System.Threading.Tasks;
 
 namespace ProyectoFinalAPI.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-[Authorize] // Requiere autenticación para cualquier acción
+[Authorize]
 public class CategoriasController : ControllerBase
 {
     private readonly ApplicationDbContext _context;
@@ -18,72 +20,84 @@ public class CategoriasController : ControllerBase
         _context = context;
     }
 
-    // GET: api/categorias
     [HttpGet]
-    [AllowAnonymous] // Opcional: cualquiera puede ver las categorías (sin token)
+    [AllowAnonymous]
     public async Task<IActionResult> GetAll()
     {
-        var categorias = await _context.Categorias.ToListAsync();
+        var categorias = await _context.Categorias
+            .Select(c => new CategoriaDto
+            {
+                Id = c.Id,
+                Nombre = c.Nombre
+            })
+            .ToListAsync();
+
         return Ok(categorias);
     }
 
-    // GET: api/categorias/{id}
     [HttpGet("{id}")]
     [AllowAnonymous]
     public async Task<IActionResult> GetById(int id)
     {
         var categoria = await _context.Categorias.FindAsync(id);
+
         if (categoria == null)
-            return NotFound(new { mensaje = "Categoría no encontrada" });
-        return Ok(categoria);
+            return NotFound();
+
+        return Ok(new CategoriaDto
+        {
+            Id = categoria.Id,
+            Nombre = categoria.Nombre
+        });
     }
 
-    // POST: api/categorias
     [HttpPost]
-    [Authorize(Roles = "Admin")] // Solo Admin puede crear
-    public async Task<IActionResult> Create([FromBody] Categoria categoria)
+    [Authorize(Roles = "Admin")]
+    public async Task<IActionResult> Create([FromBody] CategoriaDto dto)
     {
-        if (string.IsNullOrWhiteSpace(categoria.Nombre))
-            return BadRequest(new { mensaje = "El nombre es obligatorio" });
+        var categoria = new Categoria
+        {
+            Nombre = dto.Nombre
+        };
 
         _context.Categorias.Add(categoria);
+
         await _context.SaveChangesAsync();
-        return CreatedAtAction(nameof(GetById), new { id = categoria.Id }, categoria);
+
+        dto.Id = categoria.Id;
+
+        return CreatedAtAction(nameof(GetById), new { id = categoria.Id }, dto);
     }
 
-    // PUT: api/categorias/{id}
     [HttpPut("{id}")]
     [Authorize(Roles = "Admin")]
-    public async Task<IActionResult> Update(int id, [FromBody] Categoria categoria)
+    public async Task<IActionResult> Update(int id, [FromBody] CategoriaDto dto)
     {
-        if (id != categoria.Id)
-            return BadRequest(new { mensaje = "El ID de la ruta no coincide con el objeto" });
+        var categoria = await _context.Categorias.FindAsync(id);
 
-        _context.Entry(categoria).State = EntityState.Modified;
-        try
-        {
-            await _context.SaveChangesAsync();
-        }
-        catch (DbUpdateConcurrencyException)
-        {
-            if (!await _context.Categorias.AnyAsync(c => c.Id == id))
-                return NotFound(new { mensaje = "Categoría no encontrada" });
-            throw;
-        }
+        if (categoria == null)
+            return NotFound();
+
+        categoria.Nombre = dto.Nombre;
+
+        await _context.SaveChangesAsync();
+
         return NoContent();
     }
 
-    // DELETE: api/categorias/{id}
     [HttpDelete("{id}")]
     [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Delete(int id)
     {
         var categoria = await _context.Categorias.FindAsync(id);
+
         if (categoria == null)
-            return NotFound(new { mensaje = "Categoría no encontrada" });
+            return NotFound();
 
         _context.Categorias.Remove(categoria);
+
         await _context.SaveChangesAsync();
+
         return NoContent();
     }
 }

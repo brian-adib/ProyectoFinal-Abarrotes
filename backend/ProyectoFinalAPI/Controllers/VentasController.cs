@@ -2,8 +2,10 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ProyectoFinalAPI.Data;
-using ProyectoFinalAPI.Models;
-using System.Security.Claims;  
+using ProyectoFinalAPI.Dtos;
+using ProyectoFinalAPI.Models;    // <-- Agregar esta línea
+using System;
+using System.Threading.Tasks;
 
 namespace ProyectoFinalAPI.Controllers;
 
@@ -27,7 +29,23 @@ public class VentasController : ControllerBase
         var ventas = await _context.Ventas
             .Include(v => v.Usuario)
             .Include(v => v.DetallesVenta)
-            .ThenInclude(d => d.Producto)
+                .ThenInclude(d => d.Producto)
+            .Select(v => new VentaDto
+            {
+                Id = v.Id,
+                Fecha = v.Fecha,
+                Total = v.Total,
+                UsuarioId = v.UsuarioId,
+                UsuarioNombre = v.Usuario != null ? v.Usuario.Username : string.Empty,
+                Detalles = v.DetallesVenta.Select(d => new DetalleVentaDto
+                {
+                    Id = d.Id,
+                    ProductoId = d.ProductoId,
+                    ProductoNombre = d.Producto != null ? d.Producto.Nombre : string.Empty,
+                    Cantidad = d.Cantidad,
+                    PrecioUnitario = d.PrecioUnitario
+                }).ToList()
+            })
             .ToListAsync();
         return Ok(ventas);
     }
@@ -40,8 +58,26 @@ public class VentasController : ControllerBase
         var venta = await _context.Ventas
             .Include(v => v.Usuario)
             .Include(v => v.DetallesVenta)
-            .ThenInclude(d => d.Producto)
-            .FirstOrDefaultAsync(v => v.Id == id);
+                .ThenInclude(d => d.Producto)
+            .Where(v => v.Id == id)
+            .Select(v => new VentaDto
+            {
+                Id = v.Id,
+                Fecha = v.Fecha,
+                Total = v.Total,
+                UsuarioId = v.UsuarioId,
+                UsuarioNombre = v.Usuario != null ? v.Usuario.Username : string.Empty,
+                Detalles = v.DetallesVenta.Select(d => new DetalleVentaDto
+                {
+                    Id = d.Id,
+                    ProductoId = d.ProductoId,
+                    ProductoNombre = d.Producto != null ? d.Producto.Nombre : string.Empty,
+                    Cantidad = d.Cantidad,
+                    PrecioUnitario = d.PrecioUnitario
+                }).ToList()
+            })
+            .FirstOrDefaultAsync();
+
         if (venta == null) return NotFound();
         return Ok(venta);
     }
@@ -49,10 +85,9 @@ public class VentasController : ControllerBase
     // POST: api/ventas
     [HttpPost]
     [Authorize(Roles = "Admin,Vendedor")]
-    public async Task<IActionResult> Create([FromBody] VentaRequest request)
+    public async Task<IActionResult> Create([FromBody] CrearVentaDto request)
     {
-        // Obtener el usuario autenticado desde el token
-        var usuarioIdClaim = User.FindFirst("id") ?? User.FindFirst(ClaimTypes.NameIdentifier);
+        var usuarioIdClaim = User.FindFirst("id") ?? User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
         if (usuarioIdClaim == null) return Unauthorized();
 
         var usuarioId = int.Parse(usuarioIdClaim.Value);
@@ -67,7 +102,7 @@ public class VentasController : ControllerBase
         };
 
         _context.Ventas.Add(venta);
-        await _context.SaveChangesAsync(); // Guardar para obtener Id de venta
+        await _context.SaveChangesAsync();
 
         decimal total = 0;
         foreach (var item in request.Detalles)
@@ -87,7 +122,6 @@ public class VentasController : ControllerBase
             };
             _context.DetallesVenta.Add(detalle);
 
-            // Actualizar stock (módulo inventario integrado)
             producto.Stock -= item.Cantidad;
             total += item.Cantidad * producto.Precio;
         }
@@ -95,10 +129,25 @@ public class VentasController : ControllerBase
         venta.Total = total;
         await _context.SaveChangesAsync();
 
-        return CreatedAtAction(nameof(GetById), new { id = venta.Id }, venta);
+        // Devolver la venta creada usando DTO
+        var ventaCreada = new VentaDto
+        {
+            Id = venta.Id,
+            Fecha = venta.Fecha,
+            Total = venta.Total,
+            UsuarioId = venta.UsuarioId,
+            UsuarioNombre = usuario.Username,
+            Detalles = request.Detalles.Select(d => new DetalleVentaDto
+            {
+                ProductoId = d.ProductoId,
+                Cantidad = d.Cantidad,
+                PrecioUnitario = _context.Productos.Find(d.ProductoId)?.Precio ?? 0
+            }).ToList()
+        };
+        return CreatedAtAction(nameof(GetById), new { id = venta.Id }, ventaCreada);
     }
 
-    // DELETE: api/ventas/{id} (Cancelar venta, reversión de stock)
+    // DELETE: api/ventas/{id}
     [HttpDelete("{id}")]
     [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Delete(int id)
@@ -108,7 +157,6 @@ public class VentasController : ControllerBase
             .FirstOrDefaultAsync(v => v.Id == id);
         if (venta == null) return NotFound();
 
-        // Devolver stock de cada producto
         foreach (var detalle in venta.DetallesVenta)
         {
             var producto = await _context.Productos.FindAsync(detalle.ProductoId);
@@ -120,16 +168,4 @@ public class VentasController : ControllerBase
         await _context.SaveChangesAsync();
         return NoContent();
     }
-}
-
-// DTO auxiliar para recibir los detalles de la venta
-public class VentaRequest
-{
-    public List<DetalleVentaRequest> Detalles { get; set; } = new();
-}
-
-public class DetalleVentaRequest
-{
-    public int ProductoId { get; set; }
-    public int Cantidad { get; set; }
 }

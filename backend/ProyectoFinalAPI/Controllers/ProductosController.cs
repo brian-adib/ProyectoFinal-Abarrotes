@@ -2,7 +2,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ProyectoFinalAPI.Data;
-using ProyectoFinalAPI.Models;   // ← ERROR #1 corregido
+using ProyectoFinalAPI.Dtos;
+using ProyectoFinalAPI.Models;
+using System.Threading.Tasks;
 
 namespace ProyectoFinalAPI.Controllers;
 
@@ -26,18 +28,19 @@ public class ProductosController : ControllerBase
         var productos = await _context.Productos
             .Include(p => p.Categoria)
             .Include(p => p.Proveedor)
-            .Select(p => new 
+            .Select(p => new ProductoDto
             {
-                p.Id,
-                p.Nombre,
-                p.Precio,
-                p.Stock,
-                p.CategoriaId,
-                p.ProveedorId,
-                Categoria = new { p.Categoria.Id, p.Categoria.Nombre },
-                Proveedor = new { p.Proveedor.Id, p.Proveedor.Nombre, p.Proveedor.Contacto }
+                Id = p.Id,
+                Nombre = p.Nombre,
+                Precio = p.Precio,
+                Stock = p.Stock,
+                CategoriaId = p.CategoriaId,
+                CategoriaNombre = p.Categoria.Nombre,
+                ProveedorId = p.ProveedorId,
+                ProveedorNombre = p.Proveedor.Nombre
             })
             .ToListAsync();
+
         return Ok(productos);
     }
 
@@ -50,20 +53,22 @@ public class ProductosController : ControllerBase
             .Include(p => p.Categoria)
             .Include(p => p.Proveedor)
             .Where(p => p.Id == id)
-            .Select(p => new 
+            .Select(p => new ProductoDto
             {
-                p.Id,
-                p.Nombre,
-                p.Precio,
-                p.Stock,
-                p.CategoriaId,
-                p.ProveedorId,
-                Categoria = new { p.Categoria.Id, p.Categoria.Nombre },
-                Proveedor = new { p.Proveedor.Id, p.Proveedor.Nombre, p.Proveedor.Contacto }
+                Id = p.Id,
+                Nombre = p.Nombre,
+                Precio = p.Precio,
+                Stock = p.Stock,
+                CategoriaId = p.CategoriaId,
+                CategoriaNombre = p.Categoria.Nombre,
+                ProveedorId = p.ProveedorId,
+                ProveedorNombre = p.Proveedor.Nombre
             })
             .FirstOrDefaultAsync();
-        
-        if (producto == null) return NotFound();
+
+        if (producto == null)
+            return NotFound();
+
         return Ok(producto);
     }
 
@@ -75,82 +80,108 @@ public class ProductosController : ControllerBase
         var productos = await _context.Productos
             .Where(p => p.Stock < minimo)
             .Include(p => p.Categoria)
-            .Select(p => new 
+            .Select(p => new ProductoDto
             {
-                p.Id,
-                p.Nombre,
-                p.Precio,
-                p.Stock,
-                p.CategoriaId,
-                Categoria = new { p.Categoria.Id, p.Categoria.Nombre }
+                Id = p.Id,
+                Nombre = p.Nombre,
+                Precio = p.Precio,
+                Stock = p.Stock,
+                CategoriaId = p.CategoriaId,
+                CategoriaNombre = p.Categoria.Nombre
             })
             .ToListAsync();
+
         return Ok(productos);
     }
 
     // POST: api/productos
     [HttpPost]
     [Authorize(Roles = "Admin")]
-    public async Task<IActionResult> Create([FromBody] Producto producto)
+    public async Task<IActionResult> Create([FromBody] CrearProductoDto dto)
     {
-        if (string.IsNullOrWhiteSpace(producto.Nombre))
-            return BadRequest("El nombre es obligatorio");
-        if (producto.Precio <= 0)
-            return BadRequest("El precio debe ser mayor a 0");
-        if (producto.Stock < 0)
-            return BadRequest("El stock no puede ser negativo");
+        if (!ModelState.IsValid)
+            return BadRequest(ModelState);
 
-        var categoria = await _context.Categorias.FindAsync(producto.CategoriaId);
-        var proveedor = await _context.Proveedores.FindAsync(producto.ProveedorId);
-        if (categoria == null) return BadRequest("Categoría no válida");
-        if (proveedor == null) return BadRequest("Proveedor no válido");
+        var categoria = await _context.Categorias.FindAsync(dto.CategoriaId);
+        var proveedor = await _context.Proveedores.FindAsync(dto.ProveedorId);
+
+        if (categoria == null)
+            return BadRequest("Categoría no válida");
+
+        if (proveedor == null)
+            return BadRequest("Proveedor no válido");
+
+        var producto = new Producto
+        {
+            Nombre = dto.Nombre,
+            Precio = dto.Precio,
+            Stock = dto.Stock,
+            CategoriaId = dto.CategoriaId,
+            ProveedorId = dto.ProveedorId
+        };
 
         _context.Productos.Add(producto);
         await _context.SaveChangesAsync();
-        
-        var nuevoProducto = new
+
+        var result = new ProductoDto
         {
-            producto.Id,
-            producto.Nombre,
-            producto.Precio,
-            producto.Stock,
-            producto.CategoriaId,
-            producto.ProveedorId,
-            Categoria = new { categoria.Id, categoria.Nombre },
-            Proveedor = new { proveedor.Id, proveedor.Nombre }
+            Id = producto.Id,
+            Nombre = producto.Nombre,
+            Precio = producto.Precio,
+            Stock = producto.Stock,
+            CategoriaId = producto.CategoriaId,
+            CategoriaNombre = categoria.Nombre,
+            ProveedorId = producto.ProveedorId,
+            ProveedorNombre = proveedor.Nombre
         };
-        return CreatedAtAction(nameof(GetById), new { id = producto.Id }, nuevoProducto);
+
+        return CreatedAtAction(nameof(GetById), new { id = producto.Id }, result);
     }
 
     // PUT: api/productos/{id}
     [HttpPut("{id}")]
     [Authorize(Roles = "Admin")]
-    public async Task<IActionResult> Update(int id, [FromBody] Producto producto)
+    public async Task<IActionResult> Update(int id, [FromBody] CrearProductoDto dto)
     {
-        if (id != producto.Id) return BadRequest();
+        var producto = await _context.Productos.FindAsync(id);
 
-        // ERROR #2 corregido: verificar existencia antes de actualizar
-        var productoExistente = await _context.Productos.FindAsync(id);
-        if (productoExistente == null) return NotFound();
+        if (producto == null)
+            return NotFound();
 
-        _context.Entry(producto).State = EntityState.Modified;
+        producto.Nombre = dto.Nombre;
+        producto.Precio = dto.Precio;
+        producto.Stock = dto.Stock;
+        producto.CategoriaId = dto.CategoriaId;
+        producto.ProveedorId = dto.ProveedorId;
+
         await _context.SaveChangesAsync();
+
         return NoContent();
     }
 
-    // PATCH: api/productos/{id}/stock?cantidad=10
+    // PATCH: api/productos/{id}/stock
     [HttpPatch("{id}/stock")]
     [Authorize(Roles = "Admin,Almacenista")]
     public async Task<IActionResult> AjustarStock(int id, [FromQuery] int cantidad)
     {
         var producto = await _context.Productos.FindAsync(id);
-        if (producto == null) return NotFound();
+
+        if (producto == null)
+            return NotFound();
 
         producto.Stock += cantidad;
-        if (producto.Stock < 0) producto.Stock = 0;
+
+        if (producto.Stock < 0)
+            producto.Stock = 0;
 
         await _context.SaveChangesAsync();
-        return Ok(new { producto.Id, producto.Nombre, producto.Stock });
+
+        return Ok(new
+        {
+            producto.Id,
+            producto.Nombre,
+            producto.Stock
+        });
     }
 
     // DELETE: api/productos/{id}
@@ -159,10 +190,14 @@ public class ProductosController : ControllerBase
     public async Task<IActionResult> Delete(int id)
     {
         var producto = await _context.Productos.FindAsync(id);
-        if (producto == null) return NotFound();
+
+        if (producto == null)
+            return NotFound();
 
         _context.Productos.Remove(producto);
+
         await _context.SaveChangesAsync();
+
         return NoContent();
     }
 }
