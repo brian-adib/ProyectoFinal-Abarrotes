@@ -4,6 +4,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>proyecto-final-abarrotes-2026-fix</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
