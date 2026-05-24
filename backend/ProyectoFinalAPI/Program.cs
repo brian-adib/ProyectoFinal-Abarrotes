@@ -44,7 +44,15 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     });
 
 builder.Services.AddAuthorization();
-
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", policy =>
+    {
+        policy.AllowAnyOrigin()
+              .AllowAnyMethod()
+              .AllowAnyHeader();
+    });
+});
 // Configurar Swagger con soporte para JWT
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
@@ -86,6 +94,7 @@ app.UseHttpsRedirection();
 
 // Autenticación y autorización (deben ir en este orden)
 app.UseAuthentication();
+app.UseCors("AllowReactApp");
 app.UseAuthorization();
 
 app.MapControllers();
