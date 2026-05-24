@@ -7,7 +7,7 @@ using System.Text;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
-
+builder.Configuration.AddUserSecrets<Program>();
 // Agregar servicios para controladores
 builder.Services.AddControllers()
     .AddJsonOptions(options =>
