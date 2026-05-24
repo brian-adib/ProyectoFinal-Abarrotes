@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ProyectoFinalAPI.Data;
 using ProyectoFinalAPI.Models;
+using System.Security.Claims;  
 
 namespace ProyectoFinalAPI.Controllers;
 
