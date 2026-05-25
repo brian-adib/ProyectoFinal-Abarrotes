@@ -2,10 +2,14 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ProyectoFinalAPI.Data;
+<<<<<<< HEAD
 using ProyectoFinalAPI.Dtos;
 using ProyectoFinalAPI.Models;    // <-- Agregar esta línea
 using System;
 using System.Threading.Tasks;
+=======
+using ProyectoFinalAPI.Models;
+>>>>>>> a1541b48e69ca8b8bb74bf55fa7aaf8e11f3dda8
 
 namespace ProyectoFinalAPI.Controllers;
 
@@ -21,7 +25,11 @@ public class VentasController : ControllerBase
         _context = context;
     }
 
+<<<<<<< HEAD
     // GET: api/ventas
+=======
+  
+>>>>>>> a1541b48e69ca8b8bb74bf55fa7aaf8e11f3dda8
     [HttpGet]
     [Authorize(Roles = "Admin,Vendedor")]
     public async Task<IActionResult> GetAll()
@@ -29,6 +37,7 @@ public class VentasController : ControllerBase
         var ventas = await _context.Ventas
             .Include(v => v.Usuario)
             .Include(v => v.DetallesVenta)
+<<<<<<< HEAD
                 .ThenInclude(d => d.Producto)
             .Select(v => new VentaDto
             {
@@ -46,11 +55,18 @@ public class VentasController : ControllerBase
                     PrecioUnitario = d.PrecioUnitario
                 }).ToList()
             })
+=======
+            .ThenInclude(d => d.Producto)
+>>>>>>> a1541b48e69ca8b8bb74bf55fa7aaf8e11f3dda8
             .ToListAsync();
         return Ok(ventas);
     }
 
+<<<<<<< HEAD
     // GET: api/ventas/{id}
+=======
+ 
+>>>>>>> a1541b48e69ca8b8bb74bf55fa7aaf8e11f3dda8
     [HttpGet("{id}")]
     [Authorize(Roles = "Admin,Vendedor")]
     public async Task<IActionResult> GetById(int id)
@@ -58,6 +74,7 @@ public class VentasController : ControllerBase
         var venta = await _context.Ventas
             .Include(v => v.Usuario)
             .Include(v => v.DetallesVenta)
+<<<<<<< HEAD
                 .ThenInclude(d => d.Producto)
             .Where(v => v.Id == id)
             .Select(v => new VentaDto
@@ -78,16 +95,30 @@ public class VentasController : ControllerBase
             })
             .FirstOrDefaultAsync();
 
+=======
+            .ThenInclude(d => d.Producto)
+            .FirstOrDefaultAsync(v => v.Id == id);
+>>>>>>> a1541b48e69ca8b8bb74bf55fa7aaf8e11f3dda8
         if (venta == null) return NotFound();
         return Ok(venta);
     }
 
+<<<<<<< HEAD
     // POST: api/ventas
     [HttpPost]
     [Authorize(Roles = "Admin,Vendedor")]
     public async Task<IActionResult> Create([FromBody] CrearVentaDto request)
     {
         var usuarioIdClaim = User.FindFirst("id") ?? User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
+=======
+ 
+    [HttpPost]
+    [Authorize(Roles = "Admin,Vendedor")]
+    public async Task<IActionResult> Create([FromBody] VentaRequest request)
+    {
+        // Obtener el usuario autenticado desde el token
+        var usuarioIdClaim = User.FindFirst("id") ?? User.FindFirst(ClaimTypes.NameIdentifier);
+>>>>>>> a1541b48e69ca8b8bb74bf55fa7aaf8e11f3dda8
         if (usuarioIdClaim == null) return Unauthorized();
 
         var usuarioId = int.Parse(usuarioIdClaim.Value);
@@ -102,7 +133,11 @@ public class VentasController : ControllerBase
         };
 
         _context.Ventas.Add(venta);
+<<<<<<< HEAD
         await _context.SaveChangesAsync();
+=======
+        await _context.SaveChangesAsync(); 
+>>>>>>> a1541b48e69ca8b8bb74bf55fa7aaf8e11f3dda8
 
         decimal total = 0;
         foreach (var item in request.Detalles)
@@ -121,7 +156,10 @@ public class VentasController : ControllerBase
                 PrecioUnitario = producto.Precio
             };
             _context.DetallesVenta.Add(detalle);
+<<<<<<< HEAD
 
+=======
+>>>>>>> a1541b48e69ca8b8bb74bf55fa7aaf8e11f3dda8
             producto.Stock -= item.Cantidad;
             total += item.Cantidad * producto.Precio;
         }
@@ -129,6 +167,7 @@ public class VentasController : ControllerBase
         venta.Total = total;
         await _context.SaveChangesAsync();
 
+<<<<<<< HEAD
         // Devolver la venta creada usando DTO
         var ventaCreada = new VentaDto
         {
@@ -148,6 +187,12 @@ public class VentasController : ControllerBase
     }
 
     // DELETE: api/ventas/{id}
+=======
+        return CreatedAtAction(nameof(GetById), new { id = venta.Id }, venta);
+    }
+
+
+>>>>>>> a1541b48e69ca8b8bb74bf55fa7aaf8e11f3dda8
     [HttpDelete("{id}")]
     [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Delete(int id)
@@ -157,6 +202,10 @@ public class VentasController : ControllerBase
             .FirstOrDefaultAsync(v => v.Id == id);
         if (venta == null) return NotFound();
 
+<<<<<<< HEAD
+=======
+       
+>>>>>>> a1541b48e69ca8b8bb74bf55fa7aaf8e11f3dda8
         foreach (var detalle in venta.DetallesVenta)
         {
             var producto = await _context.Productos.FindAsync(detalle.ProductoId);
@@ -168,4 +217,20 @@ public class VentasController : ControllerBase
         await _context.SaveChangesAsync();
         return NoContent();
     }
+<<<<<<< HEAD
 }
+=======
+}
+
+
+public class VentaRequest
+{
+    public List<DetalleVentaRequest> Detalles { get; set; } = new();
+}
+
+public class DetalleVentaRequest
+{
+    public int ProductoId { get; set; }
+    public int Cantidad { get; set; }
+}
+>>>>>>> a1541b48e69ca8b8bb74bf55fa7aaf8e11f3dda8
