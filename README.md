@@ -3,7 +3,7 @@ Sistema de gestión y venta de abarrotes
 
 ## Integrantes
 - Brian Adib 
-- [Nombre compañero 2]
+- America Lizeth
 - [Nombre compañero 3]
 
 ## Profesor
