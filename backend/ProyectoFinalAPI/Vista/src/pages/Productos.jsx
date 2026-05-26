@@ -120,10 +120,14 @@ export default function Productos() {
 
   const fmt = (n) => `$${Number(n).toLocaleString('es-MX', { minimumFractionDigits: 2 })}`
 
+  //const filtrados = productos.filter(p =>
+  //  p.nombre.toLowerCase().includes(buscar.toLowerCase()) ||
+  //  p.categoria?.nombre?.toLowerCase().includes(buscar.toLowerCase())
+  //)
   const filtrados = productos.filter(p =>
     p.nombre.toLowerCase().includes(buscar.toLowerCase()) ||
-    p.categoria?.nombre?.toLowerCase().includes(buscar.toLowerCase())
-  )
+    (p.categoriaNombre && p.categoriaNombre.toLowerCase().includes(buscar.toLowerCase()))
+  );
 
   return (
     <div className="page">
@@ -177,8 +181,10 @@ export default function Productos() {
                 <tr key={p.id}>
                   <td><span className="chip">#{p.id}</span></td>
                   <td><strong>{p.nombre}</strong></td>
-                  <td><span className="badge badge-blue">{p.categoria?.nombre || '—'}</span></td>
-                  <td style={{ color: 'var(--text2)' }}>{p.proveedor?.nombre || '—'}</td>
+                {/*<td><span className="badge badge-blue">{p.categoria?.nombre || '—'}</span></td>*/}
+                {/*<td style={{ color: 'var(--text2)' }}>{p.proveedor?.nombre || '—'}</td> */}
+                  <td><span className="badge badge-blue">{p.categoriaNombre || '—'}</span></td>
+		              <td style={{ color: 'var(--text2)' }}>{p.proveedorNombre || '—'}</td>
                   <td><strong style={{ color: 'var(--accent)' }}>{fmt(p.precio)}</strong></td>
                   <td>
                     <span className={`badge ${p.stock === 0 ? 'badge-red' : p.stock < 10 ? 'badge-yellow' : 'badge-green'}`}>
