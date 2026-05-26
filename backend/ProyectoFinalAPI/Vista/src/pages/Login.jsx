@@ -1,4 +1,4 @@
-import { useState } from 'react'
+ï»¿import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { authApi } from '../services/api'
 import { useAuth } from '../context/AuthContext'
@@ -20,7 +20,7 @@ export default function Login() {
         try {
             const res = await authApi.login({ username: form.username, password: form.password })
             login(res.token, res.role, form.username)
-            success('¡Bienvenido!')
+            success('Â¡Bienvenido!')
             navigate('/')
         } catch (err) {
             error(err.message)
@@ -34,7 +34,7 @@ export default function Login() {
         setLoading(true)
         try {
             await authApi.registro({ username: form.username, password: form.password, role: form.role })
-            success('Usuario registrado. Inicia sesión.')
+            success('Usuario registrado. Inicia sesiÃ³n.')
             setTab('login')
         } catch (err) {
             error(err.message)
@@ -53,16 +53,16 @@ export default function Login() {
 
             <div className="login-card">
                 <div className="login-brand">
-                    <span className="login-icon">?</span>
+                    <span className="login-icon">â˜…</span>
                     <div>
                         <div className="login-title">Abarrotes Don Pepe</div>
-                        <div className="login-subtitle">Sistema de Gestión</div>
+                        <div className="login-subtitle">Sistema de GestiÃ³n</div>
                     </div>
                 </div>
 
                 <div className="login-tabs">
                     <button className={`tab-btn ${tab === 'login' ? 'active' : ''}`} onClick={() => setTab('login')}>
-                        Iniciar sesión
+                        Iniciar sesiÃ³n
                     </button>
                     <button className={`tab-btn ${tab === 'registro' ? 'active' : ''}`} onClick={() => setTab('registro')}>
                         Registrarse
@@ -82,18 +82,18 @@ export default function Login() {
                             />
                         </div>
                         <div className="form-group">
-                            <label className="label">Contraseña</label>
+                            <label className="label">ContraseÃ±a</label>
                             <input
                                 className="input"
                                 type="password"
-                                placeholder="••••••••"
+                                placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢"
                                 value={form.password}
                                 onChange={e => set('password', e.target.value)}
                                 required
                             />
                         </div>
                         <button className="btn btn-primary btn-lg" type="submit" disabled={loading} style={{ width: '100%', justifyContent: 'center', marginTop: 8 }}>
-                            {loading ? <span className="spinner" /> : 'Entrar ?'}
+                            {loading ? <span className="spinner" /> : 'Entrar â†’'}
                         </button>
                     </form>
                 ) : (
@@ -103,8 +103,8 @@ export default function Login() {
                             <input className="input" placeholder="nombre de usuario" value={form.username} onChange={e => set('username', e.target.value)} required />
                         </div>
                         <div className="form-group">
-                            <label className="label">Contraseña (mín. 6 chars)</label>
-                            <input className="input" type="password" placeholder="••••••••" value={form.password} onChange={e => set('password', e.target.value)} required minLength={6} />
+                            <label className="label">ContraseÃ±a (mÃ­n. 6 chars)</label>
+                            <input className="input" type="password" placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢" value={form.password} onChange={e => set('password', e.target.value)} required minLength={6} />
                         </div>
                         <div className="form-group">
                             <label className="label">Rol</label>
@@ -115,7 +115,7 @@ export default function Login() {
                             </select>
                         </div>
                         <button className="btn btn-primary btn-lg" type="submit" disabled={loading} style={{ width: '100%', justifyContent: 'center', marginTop: 8 }}>
-                            {loading ? <span className="spinner" /> : 'Crear cuenta ?'}
+                                {loading ? <span className="spinner" /> : 'Crear cuenta â†’'}
                         </button>
                     </form>
                 )}
