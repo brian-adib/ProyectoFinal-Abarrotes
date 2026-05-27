@@ -4,10 +4,7 @@ Sistema de gestión y venta de abarrotes
 ## Integrantes
 - Brian Adib 
 - America Lizeth
-- [Nombre compañero 3]
-
-## Profesor
-[Nombre del profesor]
+- Jesús Celaya
 
 ## Requisitos
 - .NET 8
