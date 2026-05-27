@@ -1,0 +1,744 @@
+[
+  {
+    "nombre": "Coca-Cola 600ml",
+    "precio": 15.5,
+    "stock": 119,
+    "categoria": "Bebidas",
+    "proveedor": "Coca-Cola FEMSA"
+  },
+  {
+    "nombre": "Sabritas Original 45g",
+    "precio": 18.0,
+    "stock": 197,
+    "categoria": "Snacks",
+    "proveedor": "PepsiCo"
+  },
+  {
+    "nombre": "Gansito Marinela",
+    "precio": 12.0,
+    "stock": 142,
+    "categoria": "Dulces",
+    "proveedor": "Grupo Bimbo"
+  },
+  {
+    "nombre": "Red Bull 250ml",
+    "precio": 32.0,
+    "stock": 77,
+    "categoria": "Bebidas Energéticas",
+    "proveedor": "Red Bull GmbH"
+  },
+  {
+    "nombre": "Marlboro Rojo",
+    "precio": 68.0,
+    "stock": 46,
+    "categoria": "Cigarros",
+    "proveedor": "Philip Morris International"
+  },
+  {
+    "nombre": "Agua Ciel 1L",
+    "precio": 10.0,
+    "stock": 297,
+    "categoria": "Bebidas",
+    "proveedor": "Coca-Cola FEMSA"
+  },
+  {
+    "nombre": "Doritos Nacho 62g",
+    "precio": 19.5,
+    "stock": 180,
+    "categoria": "Snacks",
+    "proveedor": "PepsiCo"
+  },
+  {
+    "nombre": "Pepsi 600ml",
+    "precio": 15.0,
+    "stock": 100,
+    "categoria": "Bebidas",
+    "proveedor": "PepsiCo"
+  },
+  {
+    "nombre": "Carlos V",
+    "precio": 9.5,
+    "stock": 220,
+    "categoria": "Chocolates",
+    "proveedor": "Nestlé"
+  },
+  {
+    "nombre": "Choco Roles",
+    "precio": 13.5,
+    "stock": 140,
+    "categoria": "Dulces",
+    "proveedor": "Grupo Bimbo"
+  },
+  {
+    "nombre": "Monster Energy 473ml",
+    "precio": 35.0,
+    "stock": 70,
+    "categoria": "Bebidas Energéticas",
+    "proveedor": "Coca-Cola FEMSA"
+  },
+  {
+    "nombre": "Ruffles Queso 42g",
+    "precio": 17.0,
+    "stock": 160,
+    "categoria": "Snacks",
+    "proveedor": "PepsiCo"
+  },
+  {
+    "nombre": "Sprite 600ml",
+    "precio": 15.0,
+    "stock": 110,
+    "categoria": "Bebidas",
+    "proveedor": "Coca-Cola FEMSA"
+  },
+  {
+    "nombre": "Emperador Limón",
+    "precio": 11.0,
+    "stock": 190,
+    "categoria": "Galletas",
+    "proveedor": "PepsiCo"
+  },
+  {
+    "nombre": "Fanta Naranja 600ml",
+    "precio": 15.0,
+    "stock": 95,
+    "categoria": "Bebidas",
+    "proveedor": "Coca-Cola FEMSA"
+  },
+  {
+    "nombre": "Cheetos Poffs 42g",
+    "precio": 17.5,
+    "stock": 175,
+    "categoria": "Snacks",
+    "proveedor": "PepsiCo"
+  },
+  {
+    "nombre": "Kit Kat",
+    "precio": 14.0,
+    "stock": 200,
+    "categoria": "Chocolates",
+    "proveedor": "Nestlé"
+  },
+  {
+    "nombre": "Powerade Mora Azul 500ml",
+    "precio": 18.0,
+    "stock": 85,
+    "categoria": "Bebidas Deportivas",
+    "proveedor": "Coca-Cola FEMSA"
+  },
+  {
+    "nombre": "Vive100 Fresa 1L",
+    "precio": 20.0,
+    "stock": 60,
+    "categoria": "Jugos",
+    "proveedor": "Quala (Grupo Bimex)"
+  },
+  {
+    "nombre": "Chokis",
+    "precio": 10.5,
+    "stock": 210,
+    "categoria": "Galletas",
+    "proveedor": "PepsiCo"
+  },
+  {
+    "nombre": "Cerveza Corona 355ml",
+    "precio": 22.0,
+    "stock": 120,
+    "categoria": "Cervezas",
+    "proveedor": "Grupo Modelo (AB InBev)"
+  },
+  {
+    "nombre": "Milky Way",
+    "precio": 10.0,
+    "stock": 180,
+    "categoria": "Chocolates",
+    "proveedor": "Mars Incorporated"
+  },
+  {
+    "nombre": "Takis Fuego 62g",
+    "precio": 20.0,
+    "stock": 250,
+    "categoria": "Snacks",
+    "proveedor": "Grupo Bimbo"
+  },
+  {
+    "nombre": "Jumex Durazno 1L",
+    "precio": 18.0,
+    "stock": 90,
+    "categoria": "Jugos",
+    "proveedor": "Grupo Jumex"
+  },
+  {
+    "nombre": "Twinkie",
+    "precio": 15.0,
+    "stock": 130,
+    "categoria": "Dulces",
+    "proveedor": "Hostess Brands"
+  },
+  {
+    "nombre": "Cerveza Tecate 355ml",
+    "precio": 20.0,
+    "stock": 110,
+    "categoria": "Cervezas",
+    "proveedor": "Heineken México"
+  },
+  {
+    "nombre": "Hot Nuts 50g",
+    "precio": 16.0,
+    "stock": 140,
+    "categoria": "Snacks",
+    "proveedor": "Grupo Bimbo"
+  },
+  {
+    "nombre": "Yogurt Danone 1L",
+    "precio": 28.0,
+    "stock": 45,
+    "categoria": "Lácteos",
+    "proveedor": "Grupo Danone"
+  },
+  {
+    "nombre": "Snickers",
+    "precio": 13.0,
+    "stock": 195,
+    "categoria": "Chocolates",
+    "proveedor": "Mars Incorporated"
+  },
+  {
+    "nombre": "Manzanita Sol 600ml",
+    "precio": 15.0,
+    "stock": 75,
+    "categoria": "Bebidas",
+    "proveedor": "PepsiCo"
+  },
+  {
+    "nombre": "Panditas Ricolino",
+    "precio": 8.0,
+    "stock": 260,
+    "categoria": "Dulces",
+    "proveedor": "Mondelēz International"
+  },
+  {
+    "nombre": "Paketaxo 68g",
+    "precio": 21.0,
+    "stock": 130,
+    "categoria": "Snacks",
+    "proveedor": "PepsiCo"
+  },
+  {
+    "nombre": "Leche Lala 1L",
+    "precio": 24.0,
+    "stock": 80,
+    "categoria": "Lácteos",
+    "proveedor": "Grupo Lala"
+  },
+  {
+    "nombre": "Trident Menta",
+    "precio": 12.0,
+    "stock": 170,
+    "categoria": "Chicles",
+    "proveedor": "Mondelēz International"
+  },
+  {
+    "nombre": "Cerveza Victoria 355ml",
+    "precio": 21.0,
+    "stock": 99,
+    "categoria": "Cervezas",
+    "proveedor": "Grupo Modelo (AB InBev)"
+  },
+  {
+    "nombre": "Mazapán De La Rosa",
+    "precio": 6.0,
+    "stock": 299,
+    "categoria": "Dulces",
+    "proveedor": "Dulces de la Rosa"
+  },
+  {
+    "nombre": "Conos Rellenos",
+    "precio": 9.0,
+    "stock": 155,
+    "categoria": "Galletas",
+    "proveedor": "Grupo Bimbo"
+  },
+  {
+    "nombre": "Gatorade Naranja 500ml",
+    "precio": 19.0,
+    "stock": 95,
+    "categoria": "Bebidas Deportivas",
+    "proveedor": "PepsiCo"
+  },
+  {
+    "nombre": "M&M's Chocolate",
+    "precio": 16.0,
+    "stock": 185,
+    "categoria": "Chocolates",
+    "proveedor": "Mars Incorporated"
+  },
+  {
+    "nombre": "Tostitos Sal 85g",
+    "precio": 24.0,
+    "stock": 120,
+    "categoria": "Snacks",
+    "proveedor": "PepsiCo"
+  },
+  {
+    "nombre": "Pingüinos Marinela",
+    "precio": 13.0,
+    "stock": 145,
+    "categoria": "Dulces",
+    "proveedor": "Grupo Bimbo"
+  },
+  {
+    "nombre": "Arizona Green Tea 680ml",
+    "precio": 25.0,
+    "stock": 55,
+    "categoria": "Bebidas",
+    "proveedor": "Arizona Beverage Company"
+  },
+  {
+    "nombre": "Halls Menta",
+    "precio": 10.0,
+    "stock": 200,
+    "categoria": "Dulces",
+    "proveedor": "Mondelēz International"
+  },
+  {
+    "nombre": "Churrumais 62g",
+    "precio": 19.0,
+    "stock": 135,
+    "categoria": "Snacks",
+    "proveedor": "PepsiCo"
+  },
+  {
+    "nombre": "Fresco Kool-Aid Jamaica",
+    "precio": 7.0,
+    "stock": 280,
+    "categoria": "Bebidas",
+    "proveedor": "Kraft Heinz"
+  },
+  {
+    "nombre": "Principe Chocolate",
+    "precio": 14.0,
+    "stock": 160,
+    "categoria": "Galletas",
+    "proveedor": "PepsiCo"
+  },
+  {
+    "nombre": "Cerveza Modelo Especial 355ml",
+    "precio": 22.0,
+    "stock": 105,
+    "categoria": "Cervezas",
+    "proveedor": "Grupo Modelo (AB InBev)"
+  },
+  {
+    "nombre": "Kinder Bueno",
+    "precio": 25.0,
+    "stock": 90,
+    "categoria": "Chocolates",
+    "proveedor": "Ferrero"
+  },
+  {
+    "nombre": "Chips Jalapeño 170g",
+    "precio": 32.0,
+    "stock": 85,
+    "categoria": "Snacks",
+    "proveedor": "Grupo Bimbo"
+  },
+  {
+    "nombre": "Agua Mineral Peñafiel 600ml",
+    "precio": 12.0,
+    "stock": 139,
+    "categoria": "Bebidas",
+    "proveedor": "Keurig Dr Pepper"
+  },
+  {
+    "nombre": "Oreo Original",
+    "precio": 18.0,
+    "stock": 210,
+    "categoria": "Galletas",
+    "proveedor": "Mondelēz International"
+  },
+  {
+    "nombre": "Skittles Original",
+    "precio": 14.0,
+    "stock": 175,
+    "categoria": "Dulces",
+    "proveedor": "Mars Incorporated"
+  },
+  {
+    "nombre": "Runners Cacahuate 50g",
+    "precio": 15.0,
+    "stock": 125,
+    "categoria": "Snacks",
+    "proveedor": "Grupo Bimbo"
+  },
+  {
+    "nombre": "Pulparindo",
+    "precio": 7.0,
+    "stock": 320,
+    "categoria": "Dulces",
+    "proveedor": "Dulces de la Rosa"
+  },
+  {
+    "nombre": "Café Nescafé Frappé",
+    "precio": 28.0,
+    "stock": 60,
+    "categoria": "Café",
+    "proveedor": "Nestlé"
+  },
+  {
+    "nombre": "Cerveza Indio 355ml",
+    "precio": 20.0,
+    "stock": 90,
+    "categoria": "Cervezas",
+    "proveedor": "Heineken México"
+  },
+  {
+    "nombre": "Ferrero Rocher 3 piezas",
+    "precio": 35.0,
+    "stock": 70,
+    "categoria": "Chocolates",
+    "proveedor": "Ferrero"
+  },
+  {
+    "nombre": "Tostadas Charras 14pz",
+    "precio": 16.0,
+    "stock": 95,
+    "categoria": "Tostadas",
+    "proveedor": "Grupo Charras"
+  },
+  {
+    "nombre": "Squirt 600ml",
+    "precio": 15.0,
+    "stock": 110,
+    "categoria": "Bebidas",
+    "proveedor": "Keurig Dr Pepper"
+  },
+  {
+    "nombre": "Pulparindots",
+    "precio": 8.5,
+    "stock": 250,
+    "categoria": "Dulces",
+    "proveedor": "Dulces de la Rosa"
+  },
+  {
+    "nombre": "Crunch",
+    "precio": 11.0,
+    "stock": 190,
+    "categoria": "Chocolates",
+    "proveedor": "Nestlé"
+  },
+  {
+    "nombre": "Cheetos Flamin Hot 62g",
+    "precio": 19.0,
+    "stock": 165,
+    "categoria": "Snacks",
+    "proveedor": "PepsiCo"
+  },
+  {
+    "nombre": "Del Valle Naranja 1L",
+    "precio": 22.0,
+    "stock": 75,
+    "categoria": "Jugos",
+    "proveedor": "Coca-Cola FEMSA"
+  },
+  {
+    "nombre": "Maruchan Pollo 85g",
+    "precio": 9.5,
+    "stock": 200,
+    "categoria": "Sopas Instantáneas",
+    "proveedor": "Toyo Suisan (Maruchan de México)"
+  },
+  {
+    "nombre": "Cerveza XX Lager 355ml",
+    "precio": 21.0,
+    "stock": 100,
+    "categoria": "Cervezas",
+    "proveedor": "Heineken México"
+  },
+  {
+    "nombre": "Papas Adobadas 45g",
+    "precio": 18.0,
+    "stock": 155,
+    "categoria": "Snacks",
+    "proveedor": "PepsiCo"
+  },
+  {
+    "nombre": "Vivaloe Aloe Vera 500ml",
+    "precio": 20.0,
+    "stock": 65,
+    "categoria": "Bebidas",
+    "proveedor": "Vivaloe"
+  },
+  {
+    "nombre": "Canelitas",
+    "precio": 10.0,
+    "stock": 180,
+    "categoria": "Galletas",
+    "proveedor": "PepsiCo"
+  },
+  {
+    "nombre": "Starburst Original",
+    "precio": 13.0,
+    "stock": 160,
+    "categoria": "Dulces",
+    "proveedor": "Mars Incorporated"
+  },
+  {
+    "nombre": "Nutella 350g",
+    "precio": 78.0,
+    "stock": 40,
+    "categoria": "Untables",
+    "proveedor": "Ferrero"
+  },
+  {
+    "nombre": "Pringles Original 124g",
+    "precio": 45.0,
+    "stock": 70,
+    "categoria": "Snacks",
+    "proveedor": "Kellogg's"
+  },
+  {
+    "nombre": "Té Fuze Tea Limón 600ml",
+    "precio": 17.0,
+    "stock": 85,
+    "categoria": "Bebidas",
+    "proveedor": "Coca-Cola FEMSA"
+  },
+  {
+    "nombre": "Bocadín de Fresa",
+    "precio": 12.0,
+    "stock": 145,
+    "categoria": "Galletas",
+    "proveedor": "Hershey's"
+  },
+  {
+    "nombre": "Vero Mango",
+    "precio": 6.5,
+    "stock": 290,
+    "categoria": "Dulces",
+    "proveedor": "Mondelēz International"
+  },
+  {
+    "nombre": "Cerveza Sol 355ml",
+    "precio": 20.0,
+    "stock": 95,
+    "categoria": "Cervezas",
+    "proveedor": "Heineken México"
+  },
+  {
+    "nombre": "Bubbaloo Menta",
+    "precio": 3.0,
+    "stock": 400,
+    "categoria": "Chicles",
+    "proveedor": "Mondelēz International"
+  },
+  {
+    "nombre": "Danonino Fresa 4pk",
+    "precio": 32.0,
+    "stock": 50,
+    "categoria": "Lácteos",
+    "proveedor": "Grupo Danone"
+  },
+  {
+    "nombre": "Lay's Clásicas 170g",
+    "precio": 34.0,
+    "stock": 90,
+    "categoria": "Snacks",
+    "proveedor": "PepsiCo"
+  },
+  {
+    "nombre": "Clamato 1L",
+    "precio": 26.0,
+    "stock": 60,
+    "categoria": "Bebidas",
+    "proveedor": "Keurig Dr Pepper"
+  },
+  {
+    "nombre": "Rockaleta",
+    "precio": 9.0,
+    "stock": 220,
+    "categoria": "Dulces",
+    "proveedor": "PepsiCo (Sonrics)"
+  },
+  {
+    "nombre": "Galletas Marías 380g",
+    "precio": 22.0,
+    "stock": 110,
+    "categoria": "Galletas",
+    "proveedor": "PepsiCo"
+  },
+  {
+    "nombre": "Kinder Sorpresa",
+    "precio": 24.0,
+    "stock": 105,
+    "categoria": "Chocolates",
+    "proveedor": "Ferrero"
+  },
+  {
+    "nombre": "Michelada Mix 1L",
+    "precio": 35.0,
+    "stock": 45,
+    "categoria": "Mezclas",
+    "proveedor": "Genérico (Proveedor Regional)"
+  },
+  {
+    "nombre": "Nachos Toreados 100g",
+    "precio": 22.0,
+    "stock": 115,
+    "categoria": "Snacks",
+    "proveedor": "Grupo Bimbo"
+  },
+  {
+    "nombre": "Yakult 7pk",
+    "precio": 28.0,
+    "stock": 70,
+    "categoria": "Lácteos",
+    "proveedor": "Yakult"
+  },
+  {
+    "nombre": "Duvalín",
+    "precio": 5.0,
+    "stock": 350,
+    "categoria": "Dulces",
+    "proveedor": "Mondelēz International"
+  },
+  {
+    "nombre": "Cerveza Bohemia 355ml",
+    "precio": 23.0,
+    "stock": 80,
+    "categoria": "Cervezas",
+    "proveedor": "Heineken México"
+  },
+  {
+    "nombre": "Tang Naranja 500g",
+    "precio": 38.0,
+    "stock": 55,
+    "categoria": "Bebidas en Polvo",
+    "proveedor": "Mondelēz International"
+  },
+  {
+    "nombre": "Arcoiris Chocolate",
+    "precio": 11.5,
+    "stock": 170,
+    "categoria": "Galletas",
+    "proveedor": "PepsiCo"
+  },
+  {
+    "nombre": "Pelon Pelo Rico",
+    "precio": 8.0,
+    "stock": 240,
+    "categoria": "Dulces",
+    "proveedor": "Hershey's"
+  },
+  {
+    "nombre": "Twix",
+    "precio": 13.5,
+    "stock": 185,
+    "categoria": "Chocolates",
+    "proveedor": "Mars Incorporated"
+  },
+  {
+    "nombre": "Barrita Kellogg's Fresa",
+    "precio": 16.0,
+    "stock": 120,
+    "categoria": "Barras",
+    "proveedor": "Kellogg's"
+  },
+  {
+    "nombre": "Jugo Verde Jumex 1L",
+    "precio": 25.0,
+    "stock": 50,
+    "categoria": "Jugos",
+    "proveedor": "Grupo Jumex"
+  },
+  {
+    "nombre": "Cacahuates Japoneses 140g",
+    "precio": 26.0,
+    "stock": 95,
+    "categoria": "Snacks",
+    "proveedor": "Nishikawa"
+  },
+  {
+    "nombre": "Cerveza Heineken 355ml",
+    "precio": 26.0,
+    "stock": 85,
+    "categoria": "Cervezas",
+    "proveedor": "Heineken México"
+  },
+  {
+    "nombre": "Polvorón",
+    "precio": 6.0,
+    "stock": 280,
+    "categoria": "Galletas",
+    "proveedor": "PepsiCo"
+  },
+  {
+    "nombre": "Lucas Muecas",
+    "precio": 10.0,
+    "stock": 200,
+    "categoria": "Dulces",
+    "proveedor": "Mars Incorporated"
+  },
+  {
+    "nombre": "Choco Krispis 490g",
+    "precio": 58.0,
+    "stock": 35,
+    "categoria": "Cereales",
+    "proveedor": "Kellogg's"
+  },
+  {
+    "nombre": "Sublime",
+    "precio": 12.0,
+    "stock": 165,
+    "categoria": "Chocolates",
+    "proveedor": "Nestlé"
+  },
+  {
+    "nombre": "Fritos BBQ 57g",
+    "precio": 19.0,
+    "stock": 130,
+    "categoria": "Snacks",
+    "proveedor": "PepsiCo"
+  },
+  {
+    "nombre": "Agua Bonafont 1.5L",
+    "precio": 14.0,
+    "stock": 179,
+    "categoria": "Bebidas",
+    "proveedor": "Grupo Danone"
+  },
+  {
+    "nombre": "Chocotorro",
+    "precio": 14.0,
+    "stock": 125,
+    "categoria": "Dulces",
+    "proveedor": "Grupo Bimbo"
+  },
+  {
+    "nombre": "Cerveza Stella Artois 355ml",
+    "precio": 28.0,
+    "stock": 65,
+    "categoria": "Cervezas",
+    "proveedor": "Grupo Modelo (AB InBev)"
+  },
+  {
+    "nombre": "Rancheritos 62g",
+    "precio": 20.0,
+    "stock": 140,
+    "categoria": "Snacks",
+    "proveedor": "PepsiCo"
+  },
+  {
+    "nombre": "Nesquik Chocolate 1L",
+    "precio": 32.0,
+    "stock": 55,
+    "categoria": "Lácteos",
+    "proveedor": "Nestlé"
+  },
+  {
+    "nombre": "Marlboro Blanco",
+    "precio": 103.0,
+    "stock": 45,
+    "categoria": "Cigarros",
+    "proveedor": "Philip Morris International"
+  }
+]
